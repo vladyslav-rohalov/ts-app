@@ -1,19 +1,13 @@
 import React from 'react';
-import Counter from './couter';
-import Form from './form';
-import FormTyping from './formTyping';
-import Portal from './portal';
-import Context from './context';
+import ResponsiveAppBar from './Components/appBar/appBar';
+import Hero from './Components/hero/hero';
 
 class App extends React.Component {
   render() {
     return (
       <>
-        <Counter title="My Counter: " />
-        <Form />
-        <FormTyping />
-        <Portal children="This is Portal" />
-        <Context />
+        <ResponsiveAppBar />
+        <Hero />
       </>
     );
   }
