@@ -4,7 +4,7 @@ import '@fontsource/poppins';
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#090146',
+      main: '#141943',
     },
   },
   typography: {

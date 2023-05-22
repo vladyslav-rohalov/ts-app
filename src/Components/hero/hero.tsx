@@ -1,16 +1,13 @@
 import React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import {
-  HeroMainDIv,
-  HeroLeftDiv,
-  HeroRightDiv,
-  HeroLeftSpot,
-} from './hero.styled';
+import CardSubstrate from '../cardSubstrate/cardSubstrate';
+import BlurredSpot from 'Components/blurredSpot/blurredSpot';
+import { HeroLeftDiv, HeroRightDiv, HeroImage } from './hero.styled';
 
 function Hero() {
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" style={{ display: 'flex', marginTop: '64px' }}>
       <HeroLeftDiv>
         <Typography
           variant="h1"
@@ -53,9 +50,39 @@ function Hero() {
             10k+ <span>Comunity</span>
           </li>
         </ul>
-        <HeroLeftSpot />
+        <BlurredSpot
+          width="550px"
+          height="800px"
+          top="0"
+          left="150px"
+          background="5, 0, 255, 0.33"
+          blur="200px"
+          rotate="-100deg"
+        />
       </HeroLeftDiv>
-      <HeroRightDiv></HeroRightDiv>
+      <HeroRightDiv>
+        <HeroImage />
+        <BlurredSpot
+          width="270px"
+          height="540px"
+          top="0"
+          left="0"
+          background="143, 0, 255, 0.35"
+          blur="80px"
+          rotate="39deg"
+        />
+        <BlurredSpot
+          width="270px"
+          height="540px"
+          top="130px"
+          left="300px"
+          background="173, 0, 255, 0.35"
+          blur="80px"
+          rotate="39deg"
+        />
+        <CardSubstrate width="400px" height="300px" left="0" top="2px" />
+        <CardSubstrate width="550px" height="600px" left="0" top="0" />
+      </HeroRightDiv>
     </Container>
   );
 }
