@@ -3,8 +3,8 @@ import { Spot } from './blurredSpot.styled';
 type SpotProps = {
   width: string;
   height: string;
-  left: string;
-  top: string;
+  left?: string;
+  top?: string;
   background: string;
   blur: string;
   rotate: string;

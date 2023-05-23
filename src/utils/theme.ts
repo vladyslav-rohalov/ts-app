@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import '@fontsource/poppins';
+// import '@fontsource/poppins';
 
 export const theme = createTheme({
   palette: {
@@ -8,7 +8,7 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins, Clash Display',
     allVariants: {
       color: '#ffffff',
     },

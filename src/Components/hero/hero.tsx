@@ -1,20 +1,22 @@
-import React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import CardSubstrate from '../cardSubstrate/cardSubstrate';
+import CardSticker from '../cardSticker/cardSticker';
 import BlurredSpot from 'Components/blurredSpot/blurredSpot';
+import Features from 'Components/featuresHeader/features';
 import { HeroLeftDiv, HeroRightDiv, HeroImage } from './hero.styled';
 
-function Hero() {
+const boredLogo = require('../../images/BORED.avif');
+export default function Hero() {
   return (
-    <Container maxWidth="xl" style={{ display: 'flex', marginTop: '64px' }}>
+    <Container maxWidth="xl" style={{ display: 'flex', marginTop: '32px' }}>
       <HeroLeftDiv>
         <Typography
           variant="h1"
           align="left"
           fontSize={'5em'}
           lineHeight={'1em'}
-          marginTop={'59px'}
+          fontFamily={'Clash Display'}
+          fontWeight={600}
         >
           Discover & collect{' '}
           <span
@@ -39,21 +41,10 @@ function Hero() {
           The leading NFT Marketplace on Ethereum Home to the next generation of
           digital creators.Discover the best NFT collections.
         </Typography>
-        <ul>
-          <li>
-            432k+ <span>Collictions</span>
-          </li>
-          <li>
-            200k+ <span>Artists</span>
-          </li>
-          <li>
-            10k+ <span>Comunity</span>
-          </li>
-        </ul>
+        <Features />
         <BlurredSpot
           width="550px"
           height="800px"
-          top="0"
           left="150px"
           background="5, 0, 255, 0.33"
           blur="200px"
@@ -65,8 +56,6 @@ function Hero() {
         <BlurredSpot
           width="270px"
           height="540px"
-          top="0"
-          left="0"
           background="143, 0, 255, 0.35"
           blur="80px"
           rotate="39deg"
@@ -75,16 +64,53 @@ function Hero() {
           width="270px"
           height="540px"
           top="130px"
-          left="300px"
+          left="100px"
           background="173, 0, 255, 0.35"
           blur="80px"
           rotate="39deg"
         />
-        <CardSubstrate width="400px" height="300px" left="0" top="2px" />
-        <CardSubstrate width="550px" height="600px" left="0" top="0" />
+        <CardSticker width="500px" height="600px" left="-30px" top="16px" />
+        <CardSticker
+          width="300px"
+          height="80px"
+          top="36px"
+          left="20px"
+          zIndex={3}
+          title="BAYC"
+          text="#4836"
+          accentColor="black"
+          fontSize="32px"
+          bgImage={boredLogo}
+        />
+        <CardSticker
+          width="200px"
+          height="80px"
+          left="230px"
+          top="400px"
+          zIndex={3}
+          title="65ETH"
+          text="+17%"
+          accentColor="#24FF00"
+          fontSize="32px"
+        />
+        <CardSticker
+          width="140px"
+          height="70px"
+          left="-60px"
+          top="450px"
+          zIndex={3}
+          title="Auction"
+          text="End in"
+        />
+        <CardSticker
+          width="400px"
+          height="90px"
+          left="-30px"
+          top="490px"
+          title="17H : 56M : 35S"
+          fontSize="32px"
+        />
       </HeroRightDiv>
     </Container>
   );
 }
-
-export default Hero;
