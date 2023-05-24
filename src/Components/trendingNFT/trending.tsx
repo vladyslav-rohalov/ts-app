@@ -2,11 +2,14 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { Background } from './trending.styled';
 import BlurredSpot from 'Components/blurredSpot/blurredSpot';
-import TrandingCard from '../trendingCard/trendingCard';
+import TrandingCards from '../trendingCard/trendingCard';
 
 export default function Trending() {
   return (
-    <Container maxWidth="xl" style={{ display: 'flex', marginTop: '128px' }}>
+    <Container
+      maxWidth="xl"
+      style={{ display: 'flex', flexDirection: 'column', marginTop: '128px' }}
+    >
       <Background />
       <BlurredSpot
         width="100%"
@@ -34,9 +37,7 @@ export default function Trending() {
       >
         Trending NFTs
       </Typography>
-      <ul>
-        <TrandingCard />
-      </ul>
+      <TrandingCards />
     </Container>
   );
 }

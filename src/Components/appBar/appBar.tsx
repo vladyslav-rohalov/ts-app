@@ -12,7 +12,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import DeblurIcon from '@mui/icons-material/Deblur';
-import Logo from '../logo/logo';
 
 const pages = ['Marketplace', 'Collections', 'Comunity'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
