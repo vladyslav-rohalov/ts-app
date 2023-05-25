@@ -13,6 +13,7 @@ export default function SectionTitle({ title }: PropsTitle) {
       lineHeight={'1.23em'}
       fontFamily={'Clash Display'}
       fontWeight={600}
+      zIndex={2}
       style={{
         backgroundImage:
           'linear-gradient(90deg, rgba(105,234,203,1) 0%, rgba(234,204,248,1) 48%, rgba(102,84,241,1) 100%)',

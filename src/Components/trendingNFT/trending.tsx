@@ -19,9 +19,8 @@ export default function Trending() {
       <SectionBackground image={bgImage} top="850px" />
       <BlurredSpot
         width="100%"
-        height="900px"
-        left="0"
-        top="1000px"
+        height="650px"
+        top="800px"
         background="112, 16, 187, 0.3"
         blur="200px"
         rotate="0deg"
