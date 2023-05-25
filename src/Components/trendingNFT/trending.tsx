@@ -1,16 +1,22 @@
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import { Background } from './trending.styled';
+import SectionTitle from 'Components/sectionTitle/sectionTitle';
+import SectionBackground from '../sectionBackground/sectionBackground';
 import BlurredSpot from 'Components/blurredSpot/blurredSpot';
 import TrandingCards from '../trendingCard/trendingCard';
+import Button from 'Components/button/button';
+const bgImage = require('../../images/background.png');
 
 export default function Trending() {
   return (
     <Container
       maxWidth="xl"
-      style={{ display: 'flex', flexDirection: 'column', marginTop: '128px' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        marginTop: '128px',
+      }}
     >
-      <Background />
+      <SectionBackground image={bgImage} top="850px" />
       <BlurredSpot
         width="100%"
         height="900px"
@@ -20,24 +26,14 @@ export default function Trending() {
         blur="200px"
         rotate="0deg"
       />
-      <Typography
-        variant="h2"
-        align="center"
-        fontSize={'3.5em'}
-        lineHeight={'1.23em'}
-        fontFamily={'Clash Display'}
-        fontWeight={600}
-        style={{
-          backgroundImage:
-            'linear-gradient(90deg, rgba(105,234,203,1) 0%, rgba(234,204,248,1) 48%, rgba(102,84,241,1) 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          margin: '0 auto',
-        }}
-      >
-        Trending NFTs
-      </Typography>
+      <SectionTitle title="Trending NFTs" />
       <TrandingCards />
+      <Button
+        text="see more"
+        width="220px"
+        height="40px"
+        bgColor="#291361"
+      ></Button>
     </Container>
   );
 }

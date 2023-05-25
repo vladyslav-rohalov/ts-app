@@ -1,13 +1,17 @@
 import styled from '@emotion/styled';
-const bgImage = require('../../images/background.png');
 
-export const Background = styled.div`
+type PropsImage = {
+  image: string;
+  top: string;
+};
+
+export const Background = styled.div<PropsImage>`
   position: absolute;
   width: 100%;
   height: 600px;
   left: 0;
-  top: 850px;
-  background: url(${bgImage});
+  top: ${props => props.top};
+  background: url(${props => props.image});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

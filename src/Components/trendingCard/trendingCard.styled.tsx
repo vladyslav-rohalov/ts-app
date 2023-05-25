@@ -1,23 +1,93 @@
 import styled from '@emotion/styled/macro';
+import { keyframes } from '@emotion/react';
 const tmpCollectionLogo = require('../../images/BORED.avif');
 
+const glowing = keyframes`
+0% { background-position: 0 0; }
+50% { background-position: 400% 0; }
+100% { background-position: 0 0; }
+`;
+
 export const Button = styled.button`
-  display: none;
-  width: 40px;
-  background-color: green;
-  color: white;
+  width: 320px;
+  height: 40px;
+  background: #2f80ed;
+  color: #ffffff;
+  border-style: none;
+  border-radius: 60px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 1.5;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(0.1);
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+      45deg,
+      #ff0000,
+      #ff7300,
+      #fffb00,
+      #48ff00,
+      #00ffd5,
+      #002bff,
+      #7a00ff,
+      #ff00c8,
+      #ff0000
+    );
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 1px);
+    height: calc(100% + 1px);
+    animation: ${glowing} 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 60px;
+  }
+  &:active:after {
+    background: transparent;
+  }
+  &:hover:before {
+    opacity: 1;
+  }
+  &:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #2f80ed;
+    left: 0;
+    top: 0;
+    border-radius: 60px;
+  }
+`;
+
+export const CardImage = styled.img`
+  width: 320px;
+  height: 400px;
+  border-radius: 15px;
+  object-fit: cover;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const Card = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 340px;
   height: 500px;
   padding: 20px;
   gap: 20px;
+  user-select: none;
   background: linear-gradient(
     155.14deg,
     rgba(255, 255, 255, 0) -2.13%,
@@ -27,6 +97,14 @@ export const Card = styled.div`
   backdrop-filter: blur(12.5px);
   border-radius: 20px;
   &:hover {
+    ${Button} {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+    ${CardImage} {
+      height: 280px;
+    }
     background: linear-gradient(#3d2c71, #3d2c71) padding-box,
       linear-gradient(
           90deg,
@@ -36,15 +114,9 @@ export const Card = styled.div`
         )
         border-box;
     border-radius: 20px;
-    border: 4px solid transparent;
+    border: 1px solid transparent;
+    height: 498px;
   }
-`;
-
-export const CardImage = styled.img`
-  width: 320px;
-  height: 400px;
-  border-radius: 15px;
-  object-fit: cover;
 `;
 
 export const NftInfo = styled.div`

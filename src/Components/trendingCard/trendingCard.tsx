@@ -35,7 +35,8 @@ export default function TrandingCards(): JSX.Element {
         }}
         navigation={true}
         modules={[FreeMode, Navigation]}
-        // color='black'
+        resistance={false}
+        shortSwipes={false}
       >
         <SwiperSlide>
           <Card>
@@ -90,7 +91,7 @@ export default function TrandingCards(): JSX.Element {
                 <Price>58 500$</Price> <PriceUsdLabel>+10%</PriceUsdLabel>
               </PriceDiv>
             </PriceInfo>
-            <Button type="button">qqqqqqq</Button>
+            <Button type="button">Collect now</Button>
           </Card>
         </SwiperSlide>
         {/* //////////////////////////////////////// */}
@@ -147,6 +148,7 @@ export default function TrandingCards(): JSX.Element {
                 <Price>58 500$</Price> <PriceUsdLabel>+10%</PriceUsdLabel>
               </PriceDiv>
             </PriceInfo>
+            <Button type="button">Collect now</Button>
           </Card>
         </SwiperSlide>
         <SwiperSlide>
@@ -202,6 +204,7 @@ export default function TrandingCards(): JSX.Element {
                 <Price>58 500$</Price> <PriceUsdLabel>+10%</PriceUsdLabel>
               </PriceDiv>
             </PriceInfo>
+            <Button type="button">Collect now</Button>
           </Card>
         </SwiperSlide>
         <SwiperSlide>
@@ -257,6 +260,7 @@ export default function TrandingCards(): JSX.Element {
                 <Price>58 500$</Price> <PriceUsdLabel>+10%</PriceUsdLabel>
               </PriceDiv>
             </PriceInfo>
+            <Button type="button">Collect now</Button>
           </Card>
         </SwiperSlide>
         <SwiperSlide>
@@ -312,6 +316,7 @@ export default function TrandingCards(): JSX.Element {
                 <Price>58 500$</Price> <PriceUsdLabel>+10%</PriceUsdLabel>
               </PriceDiv>
             </PriceInfo>
+            <Button type="button">Collect now</Button>
           </Card>
         </SwiperSlide>
       </Swiper>
