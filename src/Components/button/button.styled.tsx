@@ -1,12 +1,6 @@
 import styled from '@emotion/styled/macro';
 import { keyframes } from '@emotion/react';
 
-const glowing = keyframes`
-0% { background-position: 0 0; }
-50% { background-position: 400% 0; }
-100% { background-position: 0 0; }
-`;
-
 type ButtonProps = {
   width: string;
   height: string;
@@ -14,6 +8,12 @@ type ButtonProps = {
   color?: string;
   fontSize?: string;
 };
+
+const glowing = keyframes`
+0% { background-position: 0 0; }
+50% { background-position: 400% 0; }
+100% { background-position: 0 0; }
+`;
 
 export const ButtonStyled = styled.button<ButtonProps>`
   position: relative;

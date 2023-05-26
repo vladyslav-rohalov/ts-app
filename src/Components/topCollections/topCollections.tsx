@@ -3,6 +3,21 @@ import SectionTitle from 'Components/sectionTitle/sectionTitle';
 import SectionBackground from '../sectionBackground/sectionBackground';
 import BlurredSpot from 'Components/blurredSpot/blurredSpot';
 import FilterBar from 'Components/buttonBar/filterBar';
+import {
+  Card,
+  CardImage,
+  NftInfo,
+  TextBlock,
+  NftName,
+  CollectionName,
+  LogoContainer,
+  PriceInfo,
+  PriceEthLabel,
+  PriceUsdLabel,
+  Price,
+  PriceDiv,
+  Button,
+} from '../trendingCard/trendingCard.styled';
 
 const bgImage = require('../../images/background2.png');
 
@@ -14,6 +29,7 @@ export default function TopCollections() {
         display: 'flex',
         flexDirection: 'column',
         marginTop: '128px',
+        padding: '0 72px',
       }}
     >
       <SectionTitle title="Top Collections" />
