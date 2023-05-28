@@ -8,7 +8,7 @@ import './styles.css';
 import SectionTitle from 'Components/sectionTitle/sectionTitle';
 import SectionBackground from '../sectionBackground/sectionBackground';
 import BlurredSpot from 'Components/blurredSpot/blurredSpot';
-import TrandingCard from '../trendingCard/trendingCard';
+import NftCard from '../nftCard/nftCard';
 import Button from 'Components/button/button';
 
 const bgImage = require('../../images/background.png');
@@ -50,7 +50,7 @@ export default function Trending() {
         shortSwipes={false}
       >
         <SwiperSlide>
-          <TrandingCard
+          <NftCard
             image={image}
             name="HAPE #8064"
             collection="HAPE PRIME"
@@ -59,10 +59,11 @@ export default function Trending() {
             priceUsd={58500}
             priceChange={10}
             titleButton="Collect now"
+            cardSize="big"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <TrandingCard
+          <NftCard
             image={image}
             name="HAPE #8064"
             collection="HAPE PRIME"
@@ -71,10 +72,11 @@ export default function Trending() {
             priceUsd={58500}
             priceChange={10}
             titleButton="Collect now"
+            cardSize="big"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <TrandingCard
+          <NftCard
             image={image}
             name="HAPE #8064"
             collection="HAPE PRIME"
@@ -83,10 +85,11 @@ export default function Trending() {
             priceUsd={58500}
             priceChange={10}
             titleButton="Collect now"
+            cardSize="big"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <TrandingCard
+          <NftCard
             image={image}
             name="HAPE #8064"
             collection="HAPE PRIME"
@@ -95,6 +98,7 @@ export default function Trending() {
             priceUsd={58500}
             priceChange={10}
             titleButton="Collect now"
+            cardSize="big"
           />
         </SwiperSlide>
       </Swiper>

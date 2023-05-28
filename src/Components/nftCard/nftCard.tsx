@@ -12,7 +12,7 @@ import {
   Price,
   PriceDiv,
   Button,
-} from './trendingCard.styled';
+} from './nftCard.styled';
 
 type NftProps = {
   image: string;
@@ -23,9 +23,10 @@ type NftProps = {
   priceEth: number;
   priceUsd: number;
   priceChange: number;
+  cardSize: string;
 };
 
-export default function TrandingCard({
+export default function NftCard({
   image,
   name,
   collection,
@@ -34,16 +35,17 @@ export default function TrandingCard({
   priceChange,
   logo,
   titleButton,
+  cardSize,
 }: NftProps) {
   return (
-    <Card>
-      <CardImage src={image} alt="NFT" />
-      <NftInfo logo={logo}>
+    <Card cardSize={cardSize}>
+      <CardImage src={image} alt="NFT" cardSize={cardSize} />
+      <NftInfo logo={logo} cardSize={cardSize}>
         <TextBlock>
-          <NftName>{name}</NftName>
-          <CollectionName>{collection}</CollectionName>
+          <NftName cardSize={cardSize}>{name}</NftName>
+          <CollectionName cardSize={cardSize}>{collection}</CollectionName>
         </TextBlock>
-        <LogoContainer>
+        <LogoContainer cardSize={cardSize}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             aria-label="Ethereum"
@@ -71,17 +73,19 @@ export default function TrandingCard({
           </svg>
         </LogoContainer>
       </NftInfo>
-      <PriceInfo>
+      <PriceInfo cardSize={cardSize}>
         <PriceDiv>
-          <Price>{priceEth} ETH</Price>{' '}
-          <PriceEthLabel>FLOOR PRICE</PriceEthLabel>
+          <Price cardSize={cardSize}>{priceEth} ETH</Price>{' '}
+          <PriceEthLabel cardSize={cardSize}>FLOOR PRICE</PriceEthLabel>
         </PriceDiv>
         <PriceDiv>
-          <Price>{priceUsd}$</Price>{' '}
-          <PriceUsdLabel>+{priceChange}%</PriceUsdLabel>
+          <Price cardSize={cardSize}>{priceUsd}$</Price>{' '}
+          <PriceUsdLabel cardSize={cardSize}>+{priceChange}%</PriceUsdLabel>
         </PriceDiv>
       </PriceInfo>
-      <Button type="button">{titleButton}</Button>
+      <Button type="button" cardSize={cardSize}>
+        {titleButton}
+      </Button>
     </Card>
   );
 }
