@@ -80,7 +80,7 @@ export default function NftCard({
         </PriceDiv>
         <PriceDiv>
           <Price cardSize={cardSize}>{priceUsd}$</Price>{' '}
-          <PriceUsdLabel cardSize={cardSize}>+{priceChange}%</PriceUsdLabel>
+          <PriceUsdLabel cardSize={cardSize}>{priceChange}</PriceUsdLabel>
         </PriceDiv>
       </PriceInfo>
       <Button type="button" cardSize={cardSize}>

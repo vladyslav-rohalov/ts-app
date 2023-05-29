@@ -218,11 +218,10 @@ export const NftInfo = styled.div<CardProps>`
     props.cardSize === 'small'
       ? sizeParams.small.generalGap
       : sizeParams.big.generalGap};
-  width: $
-    ${props =>
-      props.cardSize === 'small'
-        ? sizeParams.small.generalWidth
-        : sizeParams.big.generalWidth};
+  width: ${props =>
+    props.cardSize === 'small'
+      ? sizeParams.small.generalWidth
+      : sizeParams.big.generalWidth};
   max-height: ${props =>
     props.cardSize === 'small'
       ? sizeParams.small.infoHeight
