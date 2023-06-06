@@ -1,5 +1,6 @@
 import {
   Card,
+  ImageContainer,
   CardImage,
   NftInfo,
   TextBlock,
@@ -7,23 +8,26 @@ import {
   CollectionName,
   LogoContainer,
   PriceInfo,
-  PriceEthLabel,
-  PriceUsdLabel,
-  Price,
+  PriceChangeLabel,
+  PriceChange,
+  PriceUsd,
   PriceDiv,
   Button,
+  BgImage,
 } from './nftCard.styled';
+import ChainLogo from 'Components/chainLogo/chainLogo';
 
 type NftProps = {
   image: string;
-  name: string;
+  name?: string;
   collection: string;
-  logo: string;
+  logo?: string;
   titleButton: string;
   priceEth: number;
   priceUsd: number;
-  priceChange: number;
+  priceChange: string;
   cardSize: string;
+  chainName: string;
 };
 
 export default function NftCard({
@@ -36,51 +40,43 @@ export default function NftCard({
   logo,
   titleButton,
   cardSize,
+  chainName,
 }: NftProps) {
+  const priceChangeColor = (): string | undefined => {
+    if (priceChange === null) return;
+    if (priceChange[0] === '-') {
+      return '#FF0000';
+    } else {
+      return '#24ff00';
+    }
+  };
+
   return (
     <Card cardSize={cardSize}>
-      <CardImage src={image} alt="NFT" cardSize={cardSize} />
-      <NftInfo logo={logo} cardSize={cardSize}>
+      <ImageContainer cardSize={cardSize}>
+        <CardImage src={image} alt="NFT" cardSize={cardSize} />
+      </ImageContainer>
+
+      <NftInfo cardSize={cardSize}>
+        {cardSize === 'big' && <BgImage logo={logo} />}
         <TextBlock>
-          <NftName cardSize={cardSize}>{name}</NftName>
+          {cardSize === 'big' && <NftName cardSize={cardSize}>{name}</NftName>}
           <CollectionName cardSize={cardSize}>{collection}</CollectionName>
         </TextBlock>
         <LogoContainer cardSize={cardSize}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            aria-label="Ethereum"
-            role="img"
-            viewBox="0 0 512 512"
-            fill="#000000"
-          >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              <rect width="512" height="512" rx="15%" fill="transparent"></rect>
-              <path fill="#3C3C3B" d="m256 362v107l131-185z"></path>
-              <path fill="#343434" d="m256 41l131 218-131 78-132-78"></path>
-              <path
-                fill="#8C8C8C"
-                d="m256 41v158l-132 60m0 25l132 78v107"
-              ></path>
-              <path fill="#141414" d="m256 199v138l131-78"></path>
-              <path fill="#393939" d="m124 259l132-60v138"></path>
-            </g>
-          </svg>
+          <ChainLogo chainName={chainName} />
         </LogoContainer>
       </NftInfo>
       <PriceInfo cardSize={cardSize}>
         <PriceDiv>
-          <Price cardSize={cardSize}>{priceEth} ETH</Price>{' '}
-          <PriceEthLabel cardSize={cardSize}>FLOOR PRICE</PriceEthLabel>
+          <PriceUsd cardSize={cardSize}>{priceEth} ETH</PriceUsd>{' '}
+          <PriceChangeLabel cardSize={cardSize}>PRICE CHANGE</PriceChangeLabel>
         </PriceDiv>
         <PriceDiv>
-          <Price cardSize={cardSize}>{priceUsd}$</Price>{' '}
-          <PriceUsdLabel cardSize={cardSize}>{priceChange}</PriceUsdLabel>
+          <PriceUsd cardSize={cardSize}>{priceUsd}$</PriceUsd>{' '}
+          <PriceChange cardSize={cardSize} color={priceChangeColor()}>
+            {priceChange}
+          </PriceChange>
         </PriceDiv>
       </PriceInfo>
       <Button type="button" cardSize={cardSize}>

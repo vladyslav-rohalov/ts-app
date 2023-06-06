@@ -3,7 +3,7 @@ import { keyframes } from '@emotion/react';
 
 type CardProps = {
   logo?: string;
-  cardSize: string;
+  cardSize?: string;
 };
 
 const sizeParams = {
@@ -14,7 +14,7 @@ const sizeParams = {
     cardHeight: '500px',
     cardHeightHovered: '498px',
     cardPadding: '20px',
-    imageHeight: '400px',
+    imageHeight: '320px',
     imageHeightHovered: '280px',
     btnHeight: '40px',
     btnBR: '60px',
@@ -33,17 +33,17 @@ const sizeParams = {
     generalWidth: '240px',
     generalGap: '20px',
     cardWidth: '260px',
-    cardHeight: '400px',
-    cardHeightHovered: '398px',
+    cardHeight: '360px',
+    cardHeightHovered: '358px',
     cardPadding: '16px',
     imageHeight: '240px',
-    imageHeightHovered: '180px',
+    imageHeightHovered: '200px',
     btnHeight: '32px',
     btnBR: '48px',
     btnFS: '0.8em',
     infoHeight: '48px',
     nftNameFS: '1em',
-    collectionNameFS: '0.7em',
+    collectionNameFS: '1em',
     logoWidth: '36px',
     logoHeight: '36px',
     priceInfoGap: '32px',
@@ -80,7 +80,7 @@ export const Button = styled.button<CardProps>`
   line-height: 1.5;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease-in-out;
   transform: scale(0.1);
   &:before {
     content: '';
@@ -119,7 +119,6 @@ export const Button = styled.button<CardProps>`
     opacity: 1;
   }
   &:after {
-    z-index: -1;
     content: '';
     position: absolute;
     width: 100%;
@@ -127,11 +126,25 @@ export const Button = styled.button<CardProps>`
     background: #2f80ed;
     left: 0;
     top: 0;
+    z-index: -1;
     border-radius: ${props =>
       props.cardSize === 'small'
         ? sizeParams.small.btnBR
         : sizeParams.big.btnBR};
   }
+`;
+
+export const ImageContainer = styled.div<CardProps>`
+  display: flex;
+  width: ${props =>
+    props.cardSize === 'small'
+      ? sizeParams.small.generalWidth
+      : sizeParams.big.generalWidth};
+  height: ${props =>
+    props.cardSize === 'small'
+      ? sizeParams.small.imageHeight
+      : sizeParams.big.imageHeight};
+  transition: all 0.3s ease-in-out;
 `;
 
 export const CardImage = styled.img<CardProps>`
@@ -145,7 +158,7 @@ export const CardImage = styled.img<CardProps>`
       : sizeParams.big.imageHeight};
   border-radius: 15px;
   object-fit: cover;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease-in-out;
 `;
 
 export const Card = styled.div<CardProps>`
@@ -179,6 +192,7 @@ export const Card = styled.div<CardProps>`
   filter: drop-shadow(0px 4px 49px rgba(0, 7, 72, 0.12));
   backdrop-filter: blur(12.5px);
   border-radius: 20px;
+  overflow: hidden;
   &:hover {
     ${Button} {
       opacity: 1;
@@ -226,20 +240,23 @@ export const NftInfo = styled.div<CardProps>`
     props.cardSize === 'small'
       ? sizeParams.small.infoHeight
       : sizeParams.big.infoHeight};
-  background: url(${props => props.logo});
-  background-position: left;
-  background-size: contain;
-  background-repeat: no-repeat;
 `;
 
-export const TextBlock = styled.div`
+export const TextBlock = styled.div<CardProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   padding: 0px;
   gap: 5px;
-  margin-left: 80px;
+`;
+
+export const BgImage = styled.div<CardProps>`
+  width: 45px;
+  height: 45px;
+  background: url(${props => props.logo});
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 
 export const NftName = styled.p<CardProps>`
@@ -282,8 +299,6 @@ export const LogoContainer = styled.div<CardProps>`
     props.cardSize === 'small'
       ? sizeParams.small.logoHeight
       : sizeParams.big.logoHeight};
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
 `;
 
 export const PriceInfo = styled.div<CardProps>`
@@ -306,7 +321,7 @@ export const PriceInfo = styled.div<CardProps>`
   padding: 0px 3px;
 `;
 
-export const Price = styled.p<CardProps>`
+export const PriceUsd = styled.p<CardProps>`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -323,24 +338,7 @@ export const PriceDiv = styled.div`
   flex-direction: column;
 `;
 
-export const PriceEthLabel = styled.p<CardProps>`
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 500;
-  font-size: $
-    ${props =>
-      props.cardSize === 'small'
-        ? sizeParams.small.priceLabelFS
-        : sizeParams.big.priceLabelFS};
-  line-height: 1.5;
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-  opacity: 0.7;
-  margin: 0 auto;
-`;
-
-export const PriceUsdLabel = styled.p<CardProps>`
+export const PriceChangeLabel = styled.p<CardProps>`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
@@ -351,6 +349,22 @@ export const PriceUsdLabel = styled.p<CardProps>`
   line-height: 1.5;
   display: flex;
   align-items: center;
-  color: #24ff00;
+  color: #ffffff;
+  opacity: 0.7;
+  margin: 0;
+`;
+
+export const PriceChange = styled.p<CardProps>`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: ${props =>
+    props.cardSize === 'small'
+      ? sizeParams.small.priceLabelFS
+      : sizeParams.big.priceLabelFS};
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  color: ${props => props.color};
   margin: 0 auto;
 `;

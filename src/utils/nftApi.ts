@@ -9,11 +9,6 @@ axios.defaults.headers.common = {
 
 const API_URL =
   'statistics/ranking/trade?time=1d&sort_field=volume&sort_direction=desc&show_7d_trends=false';
-// 'collections/rankings?sort_field=sales_total&sort_direction=desc&limit=8';
-
-// interface GetNftFn {
-//   (subString: string): Promise<object>;
-// }
 
 export default async function getTradeRanking(): Promise<any> {
   try {

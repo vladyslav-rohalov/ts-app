@@ -57,9 +57,10 @@ export default function Trending() {
             logo={tmpCollectionLogo}
             priceEth={32.5}
             priceUsd={58500}
-            priceChange={10}
+            priceChange="+10%"
             titleButton="Collect now"
             cardSize="big"
+            chainName="Ethereum"
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -70,9 +71,10 @@ export default function Trending() {
             logo={tmpCollectionLogo}
             priceEth={32.5}
             priceUsd={58500}
-            priceChange={10}
+            priceChange="-8%"
             titleButton="Collect now"
             cardSize="big"
+            chainName="Ethereum"
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -83,9 +85,10 @@ export default function Trending() {
             logo={tmpCollectionLogo}
             priceEth={32.5}
             priceUsd={58500}
-            priceChange={10}
+            priceChange="+10%"
             titleButton="Collect now"
             cardSize="big"
+            chainName="Ethereum"
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -96,9 +99,10 @@ export default function Trending() {
             logo={tmpCollectionLogo}
             priceEth={32.5}
             priceUsd={58500}
-            priceChange={10}
+            priceChange="+2%"
             titleButton="Collect now"
             cardSize="big"
+            chainName="Ethereum"
           />
         </SwiperSlide>
       </Swiper>

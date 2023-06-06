@@ -1,89 +1,124 @@
-import { useState } from 'react';
 import { Container, RadioButtonHiden, RadioButton } from './filterBar.styled';
 
-export default function FilterBar() {
-  const [selectedOption, setSelectedOption] = useState('Art');
+type FilterProps = {
+  selectedOption: string;
+  updateOption: any;
+};
 
+export default function FilterBar({
+  selectedOption,
+  updateOption,
+}: FilterProps) {
   const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setSelectedOption(value);
+    updateOption(value);
   };
 
   return (
     <Container>
-      <label htmlFor="Art">
+      <label htmlFor="Ethereum">
         <RadioButtonHiden
           type="radio"
-          name="Art"
-          value="Art"
-          id="Art"
-          checked={selectedOption === 'Art'}
+          name="Ethereum"
+          value="Ethereum"
+          id="Ethereum"
+          checked={selectedOption === 'Ethereum'}
           onChange={handleChecked}
         />
         <RadioButton
-          bgColor={selectedOption === 'Art' ? '#2F80ED' : 'transparent'}
+          bgColor={selectedOption === 'Ethereum' ? '#2F80ED' : 'transparent'}
         >
-          Art
+          Ethereum
         </RadioButton>
       </label>
-      <label htmlFor="Music">
+      <label htmlFor="BSC">
         <RadioButtonHiden
           type="radio"
-          name="Music"
-          value="Music"
-          id="Music"
-          checked={selectedOption === 'Music'}
+          name="BSC"
+          value="BSC"
+          id="BSC"
+          checked={selectedOption === 'BSC'}
           onChange={handleChecked}
         />
         <RadioButton
-          bgColor={selectedOption === 'Music' ? '#2F80ED' : 'transparent'}
+          bgColor={selectedOption === 'BSC' ? '#2F80ED' : 'transparent'}
         >
-          Music
+          BSC
         </RadioButton>
       </label>
-      <label htmlFor="Game">
+      <label htmlFor="Polygon">
         <RadioButtonHiden
           type="radio"
-          name="Game"
-          value="Game"
-          id="Game"
-          checked={selectedOption === 'Game'}
+          name="Polygon"
+          value="Polygon"
+          id="Polygon"
+          checked={selectedOption === 'Polygon'}
           onChange={handleChecked}
         />
         <RadioButton
-          bgColor={selectedOption === 'Game' ? '#2F80ED' : 'transparent'}
+          bgColor={selectedOption === 'Polygon' ? '#2F80ED' : 'transparent'}
         >
-          Game
+          Polygon
         </RadioButton>
       </label>
-      <label htmlFor="Sports">
+      <label htmlFor="Arbitrum">
         <RadioButtonHiden
           type="radio"
-          name="Sports"
-          value="Sports"
-          id="Sports"
-          checked={selectedOption === 'Sports'}
+          name="Arbitrum"
+          value="Arbitrum"
+          id="Arbitrum"
+          checked={selectedOption === 'Arbitrum'}
           onChange={handleChecked}
         />
         <RadioButton
-          bgColor={selectedOption === 'Sports' ? '#2F80ED' : 'transparent'}
+          bgColor={selectedOption === 'Arbitrum' ? '#2F80ED' : 'transparent'}
         >
-          Sports
+          Arbitrum
         </RadioButton>
       </label>
-      <label htmlFor="Metaverse">
+      <label htmlFor="Optimism">
         <RadioButtonHiden
           type="radio"
-          name="Metaverse"
-          value="Metaverse"
-          id="Metaverse"
-          checked={selectedOption === 'Metaverse'}
+          name="Optimism"
+          value="Optimism"
+          id="Optimism"
+          checked={selectedOption === 'Optimism'}
           onChange={handleChecked}
         />
         <RadioButton
-          bgColor={selectedOption === 'Metaverse' ? '#2F80ED' : 'transparent'}
+          bgColor={selectedOption === 'Optimism' ? '#2F80ED' : 'transparent'}
         >
-          Metaverse
+          Optimism
+        </RadioButton>
+      </label>
+      <label htmlFor="Avalanche">
+        <RadioButtonHiden
+          type="radio"
+          name="Avalanche"
+          value="Avalanche"
+          id="Avalanche"
+          checked={selectedOption === 'Avalanche'}
+          onChange={handleChecked}
+        />
+        <RadioButton
+          bgColor={selectedOption === 'Avalanche' ? '#2F80ED' : 'transparent'}
+        >
+          Avalanche
+        </RadioButton>
+      </label>
+      <label htmlFor="Moonbeam">
+        <RadioButtonHiden
+          type="radio"
+          name="Moonbeam"
+          value="Moonbeam"
+          id="Moonbeam"
+          checked={selectedOption === 'Moonbeam'}
+          onChange={handleChecked}
+        />
+        <RadioButton
+          bgColor={selectedOption === 'Moonbeam' ? '#2F80ED' : 'transparent'}
+        >
+          Moonbeam
         </RadioButton>
       </label>
     </Container>

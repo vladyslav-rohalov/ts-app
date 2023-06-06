@@ -39,7 +39,7 @@ export const RadioButton = styled.span<RadioProps>`
   cursor: pointer;
   font-family: 'Poppins';
   font-weight: 600;
-  font-size: 1.5em;
+  font-size: 1.2em;
   line-height: 1.5;
   transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 `;
