@@ -318,7 +318,6 @@ export const PriceInfo = styled.div<CardProps>`
     props.cardSize === 'small'
       ? sizeParams.small.priceInfoHeight
       : sizeParams.big.priceInfoHeight};
-  padding: 0px 3px;
 `;
 
 export const PriceUsd = styled.p<CardProps>`
@@ -336,6 +335,7 @@ export const PriceUsd = styled.p<CardProps>`
 export const PriceDiv = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: left;
 `;
 
 export const PriceChangeLabel = styled.p<CardProps>`
@@ -366,5 +366,5 @@ export const PriceChange = styled.p<CardProps>`
   display: flex;
   align-items: center;
   color: ${props => props.color};
-  margin: 0 auto;
+  margin: 0;
 `;

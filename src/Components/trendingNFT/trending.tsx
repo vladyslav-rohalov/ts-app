@@ -55,8 +55,8 @@ export default function Trending() {
             name="HAPE #8064"
             collection="HAPE PRIME"
             logo={tmpCollectionLogo}
-            priceEth={32.5}
-            priceUsd={58500}
+            priceCrypto={32.5}
+            priceUsd="58500"
             priceChange="+10%"
             titleButton="Collect now"
             cardSize="big"
@@ -69,8 +69,8 @@ export default function Trending() {
             name="HAPE #8064"
             collection="HAPE PRIME"
             logo={tmpCollectionLogo}
-            priceEth={32.5}
-            priceUsd={58500}
+            priceCrypto={32.5}
+            priceUsd="58500"
             priceChange="-8%"
             titleButton="Collect now"
             cardSize="big"
@@ -83,8 +83,8 @@ export default function Trending() {
             name="HAPE #8064"
             collection="HAPE PRIME"
             logo={tmpCollectionLogo}
-            priceEth={32.5}
-            priceUsd={58500}
+            priceCrypto={32.5}
+            priceUsd="58500"
             priceChange="+10%"
             titleButton="Collect now"
             cardSize="big"
@@ -97,8 +97,8 @@ export default function Trending() {
             name="HAPE #8064"
             collection="HAPE PRIME"
             logo={tmpCollectionLogo}
-            priceEth={32.5}
-            priceUsd={58500}
+            priceCrypto={32.5}
+            priceUsd="58500"
             priceChange="+2%"
             titleButton="Collect now"
             cardSize="big"

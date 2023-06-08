@@ -9,48 +9,32 @@ import { Gallery } from './topCollections.styled';
 import Button from 'Components/button/button';
 import getTradeRanking from 'utils/nftApi';
 import getCoinsPrice from 'utils/coinsPriceApi';
+import { calculateUsdPrice } from 'utils/calculateUsdPrice';
+import { ICryptoPrice, ITradeCollections } from 'utils/interface';
+import {
+  priceInitialState,
+  collectionsInitialState,
+} from 'utils/initialsState';
+import { switchCoinPrice } from 'utils/switchChain';
 const bgImage = require('../../images/background2.png');
 
-// interface ITradeCollections {
-//   amounts_total: number;
-//   average_price: number;
-//   average_price_change: string;
-//   contract_address: string;
-//   contract_name: string;
-//   exchange_volume_change_7d: string;
-//   exchange_volume_change_24h: string;
-//   floor_price: number;
-//   highest_price: number;
-//   items_total: number;
-//   logo_url: string;
-//   lowest_price: number;
-//   market_cap: number;
-//   market_trend: string;
-//   mint_average_price: number;
-//   mint_gas_fee: number;
-//   mint_price_total: number;
-//   owners_total: number;
-//   price_7d: number;
-//   sales: number;
-//   sales_change: string;
-//   volume: number;
-//   volume_7d: number;
-//   volume_change: string;
-// }
-
 export default function TopCollections() {
-  const [tradeRanking, setTradeRanking] = useState<any[]>([]);
+  const [tradeRanking, setTradeRanking] = useState<ITradeCollections>(
+    collectionsInitialState
+  );
+  const [cryptoPrice, setCryptoPrice] =
+    useState<ICryptoPrice>(priceInitialState);
   const [selectedOption, setSelectedOption] = useState<string>('Ethereum');
 
   const handleChecked = (e: any): void => {
-    console.log(e);
     setSelectedOption(e);
   };
 
   useEffect(() => {
     const fetchTopCollection = async () => {
-      const request = await getTradeRanking();
+      const request = await getTradeRanking(selectedOption);
       const result = request.data.data.slice(0, 8);
+      console.log(result);
       setTradeRanking(result);
     };
     fetchTopCollection();
@@ -58,9 +42,10 @@ export default function TopCollections() {
     const fetchCoinsPrice = async () => {
       const { data } = await getCoinsPrice();
       console.log(data);
+      setCryptoPrice(data);
     };
     fetchCoinsPrice();
-  }, []);
+  }, [selectedOption]);
 
   return (
     <Container
@@ -101,8 +86,11 @@ export default function TopCollections() {
               chainName={selectedOption}
               collection={collection.contract_name}
               logo={collection.logo_url}
-              priceEth={collection.average_price}
-              priceUsd={collection.average_price} // calculate to USD
+              priceCrypto={collection.average_price}
+              priceUsd={calculateUsdPrice(
+                collection.average_price,
+                switchCoinPrice(selectedOption, cryptoPrice)
+              )}
               priceChange={collection.average_price_change}
               titleButton="View collection"
               cardSize="small"

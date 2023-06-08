@@ -16,6 +16,7 @@ import {
   BgImage,
 } from './nftCard.styled';
 import ChainLogo from 'Components/chainLogo/chainLogo';
+import { switchTicker } from 'utils/switchChain';
 
 type NftProps = {
   image: string;
@@ -23,8 +24,8 @@ type NftProps = {
   collection: string;
   logo?: string;
   titleButton: string;
-  priceEth: number;
-  priceUsd: number;
+  priceUsd: string;
+  priceCrypto: number;
   priceChange: string;
   cardSize: string;
   chainName: string;
@@ -34,7 +35,7 @@ export default function NftCard({
   image,
   name,
   collection,
-  priceEth,
+  priceCrypto,
   priceUsd,
   priceChange,
   logo,
@@ -69,7 +70,9 @@ export default function NftCard({
       </NftInfo>
       <PriceInfo cardSize={cardSize}>
         <PriceDiv>
-          <PriceUsd cardSize={cardSize}>{priceEth} ETH</PriceUsd>{' '}
+          <PriceUsd cardSize={cardSize}>
+            {priceCrypto} {switchTicker(chainName)}
+          </PriceUsd>{' '}
           <PriceChangeLabel cardSize={cardSize}>PRICE CHANGE</PriceChangeLabel>
         </PriceDiv>
         <PriceDiv>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_URL =
-  'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd';
+  'https://api.coingecko.com/api/v3/simple/price?ids=ethereum,binancecoin,matic-network,arbitrum,optimism,avalanche-2,moonbeam&vs_currencies=usd';
 
 export default async function getCoinsPrice(): Promise<any> {
   try {
