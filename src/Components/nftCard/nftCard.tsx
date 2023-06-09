@@ -10,6 +10,7 @@ import {
   PriceInfo,
   PriceChangeLabel,
   PriceChange,
+  PriceCrypto,
   PriceUsd,
   PriceDiv,
   Button,
@@ -70,9 +71,9 @@ export default function NftCard({
       </NftInfo>
       <PriceInfo cardSize={cardSize}>
         <PriceDiv>
-          <PriceUsd cardSize={cardSize}>
-            {priceCrypto} {switchTicker(chainName)}
-          </PriceUsd>{' '}
+          <PriceCrypto cardSize={cardSize}>
+            {priceCrypto.toFixed(2)} {switchTicker(chainName)}
+          </PriceCrypto>{' '}
           <PriceChangeLabel cardSize={cardSize}>PRICE CHANGE</PriceChangeLabel>
         </PriceDiv>
         <PriceDiv>

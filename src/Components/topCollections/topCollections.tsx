@@ -16,6 +16,7 @@ import {
   collectionsInitialState,
 } from 'utils/initialsState';
 import { switchCoinPrice } from 'utils/switchChain';
+import { SkeletonNFT } from 'Components/skeleton/skeleton';
 const bgImage = require('../../images/background2.png');
 
 export default function TopCollections() {
@@ -25,23 +26,25 @@ export default function TopCollections() {
   const [cryptoPrice, setCryptoPrice] =
     useState<ICryptoPrice>(priceInitialState);
   const [selectedOption, setSelectedOption] = useState<string>('Ethereum');
+  const [isLoading, setIsloading] = useState<boolean>(false);
 
   const handleChecked = (e: any): void => {
     setSelectedOption(e);
   };
 
   useEffect(() => {
+    setIsloading(true);
     const fetchTopCollection = async () => {
       const request = await getTradeRanking(selectedOption);
+      console.log(request);
+      if (request.status === 200) setIsloading(false);
       const result = request.data.data.slice(0, 8);
-      console.log(result);
       setTradeRanking(result);
     };
     fetchTopCollection();
 
     const fetchCoinsPrice = async () => {
       const { data } = await getCoinsPrice();
-      console.log(data);
       setCryptoPrice(data);
     };
     fetchCoinsPrice();
@@ -78,25 +81,38 @@ export default function TopCollections() {
       <SectionBackground image={bgImage} top="1600px" />
       <FilterBar selectedOption={selectedOption} updateOption={handleChecked} />
       <Gallery>
-        {tradeRanking.map(collection => {
-          return (
-            <NftCard
-              key={collection.contract_address}
-              image={collection.logo_url}
-              chainName={selectedOption}
-              collection={collection.contract_name}
-              logo={collection.logo_url}
-              priceCrypto={collection.average_price}
-              priceUsd={calculateUsdPrice(
-                collection.average_price,
-                switchCoinPrice(selectedOption, cryptoPrice)
-              )}
-              priceChange={collection.average_price_change}
-              titleButton="View collection"
-              cardSize="small"
-            />
-          );
-        })}
+        {!isLoading &&
+          tradeRanking.map(collection => {
+            return (
+              <NftCard
+                key={collection.contract_address}
+                image={collection.logo_url}
+                chainName={selectedOption}
+                collection={collection.contract_name}
+                logo={collection.logo_url}
+                priceCrypto={collection.average_price}
+                priceUsd={calculateUsdPrice(
+                  collection.average_price,
+                  switchCoinPrice(selectedOption, cryptoPrice)
+                )}
+                priceChange={collection.average_price_change}
+                titleButton="View collection"
+                cardSize="small"
+              />
+            );
+          })}
+        {isLoading && (
+          <>
+            <SkeletonNFT width={292} height={392} />
+            <SkeletonNFT width={292} height={392} />
+            <SkeletonNFT width={292} height={392} />
+            <SkeletonNFT width={292} height={392} />
+            <SkeletonNFT width={292} height={392} />
+            <SkeletonNFT width={292} height={392} />
+            <SkeletonNFT width={292} height={392} />
+            <SkeletonNFT width={292} height={392} />
+          </>
+        )}
       </Gallery>
       <Button
         text="see more"

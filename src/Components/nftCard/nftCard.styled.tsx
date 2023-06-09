@@ -161,7 +161,7 @@ export const CardImage = styled.img<CardProps>`
   transition: all 0.3s ease-in-out;
 `;
 
-export const Card = styled.div<CardProps>`
+export const Card = styled.li<CardProps>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -320,7 +320,23 @@ export const PriceInfo = styled.div<CardProps>`
       : sizeParams.big.priceInfoHeight};
 `;
 
+export const PriceCrypto = styled.p<CardProps>`
+  display: flex;
+  justify-content: flex-start;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: ${props =>
+    props.cardSize === 'small'
+      ? sizeParams.small.priceFS
+      : sizeParams.big.priceFS};
+  line-height: 1.5;
+  margin: 0;
+`;
+
 export const PriceUsd = styled.p<CardProps>`
+  display: flex;
+  justify-content: end;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -355,6 +371,8 @@ export const PriceChangeLabel = styled.p<CardProps>`
 `;
 
 export const PriceChange = styled.p<CardProps>`
+  display: flex;
+  justify-content: end;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
@@ -363,8 +381,7 @@ export const PriceChange = styled.p<CardProps>`
       ? sizeParams.small.priceLabelFS
       : sizeParams.big.priceLabelFS};
   line-height: 1.5;
-  display: flex;
-  align-items: center;
+
   color: ${props => props.color};
   margin: 0;
 `;
