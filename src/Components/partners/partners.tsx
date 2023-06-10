@@ -1,5 +1,6 @@
 import Container from '@mui/material/Container';
 import SectionTitle from 'Components/sectionTitle/sectionTitle';
+import { PartnersList, PartnersItem } from './partners.styled';
 
 export default function Partners() {
   return (
@@ -13,19 +14,28 @@ export default function Partners() {
       }}
     >
       <SectionTitle title="Partners" />
-      <ul>
-        <li>
-          <a href="">
-            <svg width="141px" height="27px" viewBox="0 0 141 27">
-              <title>nftscan logo</title>
+      <PartnersList>
+        <PartnersItem>
+          <a
+            href="https://nftscan.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="100%"
+              height="100%"
+              viewBox="0 0 141 27"
+            >
+              <title>Nftscan</title>
               <g
                 id="\u9875\u9762-1"
                 stroke="none"
-                stroke-width="1"
+                strokeWidth="1"
                 fill="none"
-                fill-rule="evenodd"
+                fillRule="evenodd"
               >
-                <g id="logo" fill="#FFFFFF" fill-rule="nonzero">
+                <g id="logo" fill="#FFFFFF" fillRule="nonzero">
                   <path
                     d="M90.473915,6.83870925 C91.42182,6.83870925 92.19721,7.6080705 92.19721,8.54838325 L99.0905225,8.54838325 C99.0905225,3.84677975 95.2130425,0 90.473915,0 C85.7347875,0 81.8573075,3.84677975 81.8573075,8.54838325 L81.8573075,10.2580705 C81.8573075,14.9596475 85.7347875,18.8063875 90.473915,18.8063875 C95.2130425,18.8063875 99.0905225,14.9596475 99.0905225,10.2580705 L92.19721,10.2580705 C92.19721,11.1983832 91.42182,11.9677445 90.473915,11.9677445 C89.5261425,11.9677445 88.75062,11.1983832 88.75062,10.2580705 L88.75062,8.54838325 C88.75062,7.6080705 89.5261425,6.83870925 90.473915,6.83870925 Z"
                     id="\u8DEF\u5F84"
@@ -78,14 +88,20 @@ export default function Partners() {
               </g>
             </svg>
           </a>
-        </li>
-        <li>
-          <a href="">
+        </PartnersItem>
+        <PartnersItem>
+          <a
+            href="https://coingecko.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
+              width="100%"
+              height="100%"
               viewBox="0 0 1044.28 276.04"
             >
-              <title>coingecko_full vector (white font)</title>
+              <title>Coingecko</title>
               <g id="Coin_Gecko_Vector_Text" data-name="Coin Gecko Vector Text">
                 <path
                   fill="#fff"
@@ -187,8 +203,8 @@ export default function Partners() {
               </g>
             </svg>
           </a>
-        </li>
-      </ul>
+        </PartnersItem>
+      </PartnersList>
     </Container>
   );
 }
