@@ -1,22 +1,15 @@
-import React from 'react';
-import ResponsiveAppBar from './Components/appBar/appBar';
-import Hero from './Components/hero/hero';
-import Trending from 'Components/trendingNFT/trending';
-import TopCollections from 'Components/topCollections/topCollections';
-import Partners from 'Components/partners/partners';
+import { lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import SharedLayout from 'Components/sharedLayout/sharedLayout';
 
-class App extends React.Component {
-  render() {
-    return (
-      <>
-        <ResponsiveAppBar />
-        <Hero />
-        <Trending />
-        <TopCollections />
-        <Partners />
-      </>
-    );
-  }
+const Home = lazy(() => import('./pages/home'));
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Home />} />
+      </Route>
+    </Routes>
+  );
 }
-
-export default App;
