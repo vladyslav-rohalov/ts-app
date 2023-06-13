@@ -1,49 +1,41 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import nftOperations from './operations';
-import { ICollectionsState, ITrendingCollections } from 'utils/types';
+import { ICollectionsState, ITrendingCollections } from 'utils/interfaces';
 
 const initialState: ICollectionsState<ITrendingCollections> = {
   items: [],
   isLoading: false,
-  status: null,
   error: { status: null, message: null },
 };
 
-interface IPayloadError {
-  status: number | null;
-  message: string | null;
-}
-
-export const nftCollectionsSlice = createSlice({
+export const nftSingleSlice = createSlice({
   name: 'collections',
   initialState,
   reducers: {},
   extraReducers(builder) {
     builder
       .addCase(
-        nftOperations.fetchTradingCollections.pending,
+        nftOperations.fetchFirstOfCollection.pending,
         (state, action) => {
           state.isLoading = true;
         }
       )
       .addCase(
-        nftOperations.fetchTradingCollections.rejected,
+        nftOperations.fetchFirstOfCollection.rejected,
         (state, action: PayloadAction<any>) => {
           state.isLoading = false;
           state.error = action.payload;
         }
       )
       .addCase(
-        nftOperations.fetchTradingCollections.fulfilled,
+        nftOperations.fetchFirstOfCollection.fulfilled,
         (state, action) => {
-          state.items.push(action.payload.data);
-          state.status = action.payload.status;
+          state.items = [...state.items, action.payload.data];
+          state.isLoading = false;
         }
       );
   },
 });
 
-// export const {  } = counterSlice.actions;
-
-export default nftCollectionsSlice.reducer;
+export const singleNftReducer = nftSingleSlice.reducer;

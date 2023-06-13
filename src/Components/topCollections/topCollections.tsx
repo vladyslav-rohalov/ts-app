@@ -1,4 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectTopCollections,
+  selectIsLoading,
+} from 'redux/nftCollections/selectors';
+import { selectPrice } from 'redux/cryptoPrice/selectors';
+import { AppDispatch } from 'redux/store';
+import nftCollectionsOperations from 'redux/nftCollections/operations';
+import priceOperations from 'redux/cryptoPrice/operations';
 import Container from '@mui/material/Container';
 import SectionTitle from 'Components/sectionTitle/sectionTitle';
 import SectionBackground from '../sectionBackground/sectionBackground';
@@ -7,48 +16,27 @@ import FilterBar from 'Components/buttonBar/filterBar';
 import NftCard from 'Components/nftCard/nftCard';
 import { Gallery } from './topCollections.styled';
 import Button from 'Components/button/button';
-import getTradeRanking from 'utils/nftApi';
-import getCoinsPrice from 'utils/coinsPriceApi';
 import { calculateUsdPrice } from 'utils/calculateUsdPrice';
-import { ICryptoPrice, ITradeCollections } from 'utils/interface';
-import {
-  priceInitialState,
-  collectionsInitialState,
-} from 'utils/initialsState';
 import { switchCoinPrice } from 'utils/switchChain';
 import { SkeletonNFT } from 'Components/skeleton/skeleton';
 const bgImage = require('../../images/background2.png');
 
 export default function TopCollections() {
-  const [tradeRanking, setTradeRanking] = useState<ITradeCollections>(
-    collectionsInitialState
-  );
-  const [cryptoPrice, setCryptoPrice] =
-    useState<ICryptoPrice>(priceInitialState);
   const [selectedOption, setSelectedOption] = useState<string>('Ethereum');
-  const [isLoading, setIsloading] = useState<boolean>(false);
+  const useAppDispatch = () => useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
+  const trendingCollections = useSelector(selectTopCollections)?.slice(0, 8);
+  const price = useSelector(selectPrice);
+  const isLoading = useSelector(selectIsLoading);
 
   const handleChecked = (e: any): void => {
     setSelectedOption(e);
   };
 
   useEffect(() => {
-    setIsloading(true);
-    const fetchTopCollection = async () => {
-      const request = await getTradeRanking(selectedOption);
-      console.log(request);
-      if (request.status === 200) setIsloading(false);
-      const result = request.data.data.slice(0, 8);
-      setTradeRanking(result);
-    };
-    fetchTopCollection();
-
-    const fetchCoinsPrice = async () => {
-      const { data } = await getCoinsPrice();
-      setCryptoPrice(data);
-    };
-    fetchCoinsPrice();
-  }, [selectedOption]);
+    dispatch(nftCollectionsOperations.fetchTradingCollections(selectedOption));
+    dispatch(priceOperations.fetchCryptoPrice());
+  }, [dispatch, selectedOption]);
 
   return (
     <Container
@@ -82,7 +70,7 @@ export default function TopCollections() {
       <FilterBar selectedOption={selectedOption} updateOption={handleChecked} />
       <Gallery>
         {!isLoading &&
-          tradeRanking.map(collection => {
+          trendingCollections?.map(collection => {
             return (
               <NftCard
                 key={collection.contract_address}
@@ -93,7 +81,7 @@ export default function TopCollections() {
                 priceCrypto={collection.average_price}
                 priceUsd={calculateUsdPrice(
                   collection.average_price,
-                  switchCoinPrice(selectedOption, cryptoPrice)
+                  switchCoinPrice(selectedOption, price)
                 )}
                 priceChange={collection.average_price_change}
                 titleButton="View collection"

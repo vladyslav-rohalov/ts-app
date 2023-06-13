@@ -1,4 +1,4 @@
-import { ICryptoPrice } from './interface';
+import { ICryptoPrice } from './interfaces';
 
 export const switchChainURL = (chain: string): string => {
   switch (chain) {
@@ -48,20 +48,20 @@ export const switchCoinPrice = (
 ): number => {
   switch (chainName) {
     case 'Ethereum':
-      return cryptoPrice.ethereum.usd;
+      return cryptoPrice['ethereum'].usd;
     case 'BSC':
-      return cryptoPrice.binancecoin.usd;
+      return cryptoPrice['binancecoin'].usd;
     case 'Polygon':
-      return cryptoPrice.binancecoin.usd;
+      return cryptoPrice['matic-network'].usd;
     case 'Arbitrum':
-      return cryptoPrice.binancecoin.usd;
+      return cryptoPrice['arbitrum'].usd;
     case 'Optimism':
-      return cryptoPrice.binancecoin.usd;
+      return cryptoPrice['optimism'].usd;
     case 'Avalanche':
-      return cryptoPrice.binancecoin.usd;
+      return cryptoPrice['avalanche-2'].usd;
     case 'Moonbeam':
-      return cryptoPrice.binancecoin.usd;
+      return cryptoPrice['moonbeam'].usd;
     default:
-      return cryptoPrice.ethereum.usd;
+      return cryptoPrice['ethereum'].usd;
   }
 };

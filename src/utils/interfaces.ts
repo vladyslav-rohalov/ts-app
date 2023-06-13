@@ -28,6 +28,32 @@ export interface ITrendingCollections {
 export interface ICollectionsState<ITrendingCollections> {
   items: Array<ITrendingCollections>;
   isLoading: boolean;
+  error: { status: null | number; message: null | string };
+}
+
+export interface IPriceValue {
+  usd: number;
+}
+
+export interface ICryptoPrice {
+  [key: string]: IPriceValue;
+  // ethereum: IPriceValue;
+  // binancecoin: IPriceValue;
+  // 'matic-network': IPriceValue;
+  // arbitrum: IPriceValue;
+  // optimism: IPriceValue;
+  // 'avalanche-2': IPriceValue;
+  // moonbeam: IPriceValue;
+}
+
+export interface IPriceState<ICryptoPrice> {
+  items: ICryptoPrice;
+  isLoading: boolean;
   status: null | number;
   error: { status: null | number; message: null | string };
+}
+
+export interface IQueryParams extends Object {
+  chain: string;
+  addressCollection: string;
 }

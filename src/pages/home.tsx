@@ -1,5 +1,5 @@
 import Hero from 'Components/hero/hero';
-import Trending from 'Components/trendingNFT/trending';
+import TopNft from 'Components/topNFT/topNft';
 import TopCollections from 'Components/topCollections/topCollections';
 import Partners from 'Components/partners/partners';
 
@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Trending />
+      <TopNft />
       <TopCollections />
       <Partners />
     </>

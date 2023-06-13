@@ -8,11 +8,11 @@ axios.defaults.headers.common = {
 };
 
 const fetchTradingCollections = createAsyncThunk(
-  'nft/fetchTrendingCollections',
+  'nft/fetchTopCollections',
   async (chain: string, thunkAPI) => {
     try {
       const response = await axios.get(switchChainURL(chain));
-      return { data: response.data.data, status: response.data.code };
+      return { data: response.data.data };
     } catch (e: any) {
       return thunkAPI.rejectWithValue({
         status: e.response.data.code,
@@ -22,8 +22,8 @@ const fetchTradingCollections = createAsyncThunk(
   }
 );
 
-const nftOperations = {
+const nftCollectionsOperations = {
   fetchTradingCollections,
 };
 
-export default nftOperations;
+export default nftCollectionsOperations;

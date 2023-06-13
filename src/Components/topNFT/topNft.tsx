@@ -1,3 +1,12 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import {
+  selectTopCollections,
+  selectIsLoading,
+} from 'redux/nftCollections/selectors';
+import { selectNft } from 'redux/nftSingle/selectors';
+import nftSingleOperations from 'redux/nftSingle/operations';
+import { AppDispatch } from 'redux/store';
 import Container from '@mui/material/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { FreeMode, Navigation } from 'swiper';
@@ -16,7 +25,30 @@ const image = require('../../images/tmpImage.png');
 const tmpCollectionLogo = require('../../images/BORED.avif');
 SwiperCore.use([FreeMode, Navigation]);
 
-export default function Trending() {
+export default function TopNft() {
+  const useAppDispatch = () => useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
+  const trendingCollections = useSelector(selectTopCollections)?.slice(0, 8);
+  const addressesCollections = trendingCollections.map(
+    collection => collection.contract_address
+  );
+  const topNftSet = useSelector(selectNft);
+
+  // useEffect(() => {
+  //   console.log(topNftSet);
+  // }, [topNftSet]);
+
+  // useEffect(() => {
+  //   addressesCollections.map(addressCollection => {
+  //     dispatch(
+  //       nftSingleOperations.fetchFirstOfCollection({
+  //         chain: 'Ethereum',
+  //         addressCollection,
+  //       })
+  //     );
+  //   });
+  // }, [addressesCollections]);
+
   return (
     <Container
       maxWidth="xl"
@@ -58,48 +90,6 @@ export default function Trending() {
             priceCrypto={32.5}
             priceUsd="58500"
             priceChange="+10%"
-            titleButton="Collect now"
-            cardSize="big"
-            chainName="Ethereum"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <NftCard
-            image={image}
-            name="HAPE #8064"
-            collection="HAPE PRIME"
-            logo={tmpCollectionLogo}
-            priceCrypto={32.5}
-            priceUsd="58500"
-            priceChange="-8%"
-            titleButton="Collect now"
-            cardSize="big"
-            chainName="Ethereum"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <NftCard
-            image={image}
-            name="HAPE #8064"
-            collection="HAPE PRIME"
-            logo={tmpCollectionLogo}
-            priceCrypto={32.5}
-            priceUsd="58500"
-            priceChange="+10%"
-            titleButton="Collect now"
-            cardSize="big"
-            chainName="Ethereum"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <NftCard
-            image={image}
-            name="HAPE #8064"
-            collection="HAPE PRIME"
-            logo={tmpCollectionLogo}
-            priceCrypto={32.5}
-            priceUsd="58500"
-            priceChange="+2%"
             titleButton="Collect now"
             cardSize="big"
             chainName="Ethereum"
