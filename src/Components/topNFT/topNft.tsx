@@ -1,14 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {
-  selectTopCollections,
-  selectIsLoading,
-} from 'redux/nftCollections/selectors';
-import { selectNft } from 'redux/nftSingle/selectors';
-import nftSingleOperations from 'redux/nftSingle/operations';
-import { AppDispatch } from 'redux/store';
+import { useSelector } from 'react-redux';
+import { selectNft, selectIsLoading } from 'redux/nftSingle/selectors';
 import Container from '@mui/material/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import checkImgUrl from 'utils/checkImgUrl';
 import SwiperCore, { FreeMode, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -19,36 +14,17 @@ import SectionBackground from '../sectionBackground/sectionBackground';
 import BlurredSpot from 'Components/blurredSpot/blurredSpot';
 import NftCard from '../nftCard/nftCard';
 import Button from 'Components/button/button';
-
+// import { SkeletonNFT } from 'Components/skeleton/skeleton';
 const bgImage = require('../../images/background.png');
-const image = require('../../images/tmpImage.png');
-const tmpCollectionLogo = require('../../images/BORED.avif');
 SwiperCore.use([FreeMode, Navigation]);
 
 export default function TopNft() {
-  // const useAppDispatch = () => useDispatch<AppDispatch>();
-  // const dispatch = useAppDispatch();
-  // const trendingCollections = useSelector(selectTopCollections)?.slice(0, 8);
-  // const addressesCollections = trendingCollections.map(
-  //   collection => collection.contract_address
-  // );
-  // const topNftSet = useSelector(selectNft);
+  const isLoading = useSelector(selectIsLoading);
+  const topNftSet = useSelector(selectNft);
 
-  // useEffect(() => {
-  //   console.log(topNftSet);
-  // }, [topNftSet]);
-
-  // useEffect(() => {
-  //   addressesCollections.map(addressCollection => {
-  //     dispatch(
-  //       nftSingleOperations.fetchFirstOfCollection({
-  //         chain: 'Ethereum',
-  //         addressCollection,
-  //       })
-  //     );
-  //   });
-  // }, [addressesCollections]);
-
+  useEffect(() => {
+    console.log(topNftSet);
+  }, [topNftSet]);
   return (
     <Container
       maxWidth="xl"
@@ -81,20 +57,26 @@ export default function TopNft() {
         resistance={false}
         shortSwipes={false}
       >
-        <SwiperSlide>
-          <NftCard
-            image={image}
-            name="HAPE #8064"
-            collection="HAPE PRIME"
-            logo={tmpCollectionLogo}
-            priceCrypto={32.5}
-            priceUsd="58500"
-            priceChange="+10%"
-            titleButton="Collect now"
-            cardSize="big"
-            chainName="Ethereum"
-          />
-        </SwiperSlide>
+        {!isLoading &&
+          topNftSet.map(nft => {
+            return (
+              <SwiperSlide>
+                <NftCard
+                  key={nft.nftscan_id}
+                  image={checkImgUrl(nft.image_uri)}
+                  name={`#${nft.token_id}`}
+                  collection={nft.contract_name}
+                  logo={nft.image_uri}
+                  priceCrypto={nft.latest_trade_price || 0}
+                  priceUsd="58500"
+                  priceChange="+10%"
+                  titleButton="Collect now"
+                  cardSize="big"
+                  chainName="Ethereum"
+                />
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
       <Button
         text="see more"

@@ -15,7 +15,7 @@ const fetchFirstOfCollection = createAsyncThunk(
       const response = await axios.get(
         getSingleNftUrl(chain, addressCollection)
       );
-      return { data: response.data };
+      return { data: response.data.data };
     } catch (e: any) {
       return thunkAPI.rejectWithValue({
         status: e.response.code,

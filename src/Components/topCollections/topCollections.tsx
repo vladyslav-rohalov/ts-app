@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectTopCollections,
@@ -8,8 +7,6 @@ import { selectPrice } from 'redux/cryptoPrice/selectors';
 import { setChain } from 'redux/filterChain/filterChainSlice';
 import { selectChain } from 'redux/filterChain/selectors';
 import { AppDispatch } from 'redux/store';
-import nftCollectionsOperations from 'redux/nftCollections/operations';
-import priceOperations from 'redux/cryptoPrice/operations';
 import Container from '@mui/material/Container';
 import SectionTitle from 'Components/sectionTitle/sectionTitle';
 import SectionBackground from '../sectionBackground/sectionBackground';
@@ -35,11 +32,6 @@ export default function TopCollections() {
   const handleChecked = (e: any): void => {
     dispatch(setChain(e));
   };
-
-  useEffect(() => {
-    dispatch(nftCollectionsOperations.fetchTradingCollections(chain));
-    dispatch(priceOperations.fetchCryptoPrice());
-  }, [dispatch, chain]);
 
   return (
     <Container

@@ -31,19 +31,51 @@ export interface ICollectionsState<ITrendingCollections> {
   error: { status: null | number; message: null | string };
 }
 
+export interface INft {
+  amount: string;
+  attributes: any[];
+  content_type: string;
+  content_uri: string;
+  contract_address: string;
+  contract_name: string;
+  contract_token_id: string;
+  description: string;
+  erc_type: string;
+  external_link: string;
+  image_uri: string;
+  latest_trade_price: number;
+  latest_trade_symbol: string;
+  latest_trade_timestamp: number;
+  latest_trade_token: number;
+  metadata_json: string;
+  mint_price: number;
+  mint_timestamp: number;
+  mint_transaction_hash: string;
+  minter: string;
+  name: string;
+  nftscan_id: string;
+  nftscan_uri: string;
+  own_timestamp: number;
+  owner: string;
+  rarity_rank: number;
+  rarity_score: number;
+  small_nftscan_uri: string;
+  token_id: string;
+  token_uri: string;
+}
+
+export interface INftState<INft> {
+  items: Array<INft>;
+  isLoading: boolean;
+  error: { status: null | number; message: null | string };
+}
+
 export interface IPriceValue {
   usd: number;
 }
 
 export interface ICryptoPrice {
   [key: string]: IPriceValue;
-  // ethereum: IPriceValue;
-  // binancecoin: IPriceValue;
-  // 'matic-network': IPriceValue;
-  // arbitrum: IPriceValue;
-  // optimism: IPriceValue;
-  // 'avalanche-2': IPriceValue;
-  // moonbeam: IPriceValue;
 }
 
 export interface IPriceState<ICryptoPrice> {

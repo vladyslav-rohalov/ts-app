@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import nftOperations from './operations';
-import { ICollectionsState, ITrendingCollections } from 'utils/interfaces';
+import { INftState, INft } from 'utils/interfaces';
 
-const initialState: ICollectionsState<ITrendingCollections> = {
+const initialState: INftState<INft> = {
   items: [],
   isLoading: false,
   error: { status: null, message: null },
@@ -31,6 +31,7 @@ export const nftSingleSlice = createSlice({
       .addCase(
         nftOperations.fetchFirstOfCollection.fulfilled,
         (state, action) => {
+          if (action.payload.data === null) return;
           state.items = [...state.items, action.payload.data];
           state.isLoading = false;
         }
