@@ -57,3 +57,7 @@ export interface IQueryParams extends Object {
   chain: string;
   addressCollection: string;
 }
+
+export interface IFilterChain {
+  [key: string]: string;
+}

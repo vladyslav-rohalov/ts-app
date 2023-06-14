@@ -26,13 +26,13 @@ const tmpCollectionLogo = require('../../images/BORED.avif');
 SwiperCore.use([FreeMode, Navigation]);
 
 export default function TopNft() {
-  const useAppDispatch = () => useDispatch<AppDispatch>();
-  const dispatch = useAppDispatch();
-  const trendingCollections = useSelector(selectTopCollections)?.slice(0, 8);
-  const addressesCollections = trendingCollections.map(
-    collection => collection.contract_address
-  );
-  const topNftSet = useSelector(selectNft);
+  // const useAppDispatch = () => useDispatch<AppDispatch>();
+  // const dispatch = useAppDispatch();
+  // const trendingCollections = useSelector(selectTopCollections)?.slice(0, 8);
+  // const addressesCollections = trendingCollections.map(
+  //   collection => collection.contract_address
+  // );
+  // const topNftSet = useSelector(selectNft);
 
   // useEffect(() => {
   //   console.log(topNftSet);

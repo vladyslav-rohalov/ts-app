@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectTopCollections,
   selectIsLoading,
 } from 'redux/nftCollections/selectors';
 import { selectPrice } from 'redux/cryptoPrice/selectors';
+import { setChain } from 'redux/filterChain/filterChainSlice';
+import { selectChain } from 'redux/filterChain/selectors';
 import { AppDispatch } from 'redux/store';
 import nftCollectionsOperations from 'redux/nftCollections/operations';
 import priceOperations from 'redux/cryptoPrice/operations';
@@ -19,24 +21,25 @@ import Button from 'Components/button/button';
 import { calculateUsdPrice } from 'utils/calculateUsdPrice';
 import { switchCoinPrice } from 'utils/switchChain';
 import { SkeletonNFT } from 'Components/skeleton/skeleton';
+
 const bgImage = require('../../images/background2.png');
 
 export default function TopCollections() {
-  const [selectedOption, setSelectedOption] = useState<string>('Ethereum');
   const useAppDispatch = () => useDispatch<AppDispatch>();
   const dispatch = useAppDispatch();
   const trendingCollections = useSelector(selectTopCollections)?.slice(0, 8);
   const price = useSelector(selectPrice);
   const isLoading = useSelector(selectIsLoading);
+  const { chain } = useSelector(selectChain);
 
   const handleChecked = (e: any): void => {
-    setSelectedOption(e);
+    dispatch(setChain(e));
   };
 
   useEffect(() => {
-    dispatch(nftCollectionsOperations.fetchTradingCollections(selectedOption));
+    dispatch(nftCollectionsOperations.fetchTradingCollections(chain));
     dispatch(priceOperations.fetchCryptoPrice());
-  }, [dispatch, selectedOption]);
+  }, [dispatch, chain]);
 
   return (
     <Container
@@ -67,7 +70,8 @@ export default function TopCollections() {
         left="-900px"
       />
       <SectionBackground image={bgImage} top="1600px" />
-      <FilterBar selectedOption={selectedOption} updateOption={handleChecked} />
+
+      <FilterBar selectedOption={chain} updateOption={handleChecked} />
       <Gallery>
         {!isLoading &&
           trendingCollections?.map(collection => {
@@ -75,13 +79,13 @@ export default function TopCollections() {
               <NftCard
                 key={collection.contract_address}
                 image={collection.logo_url}
-                chainName={selectedOption}
+                chainName={chain}
                 collection={collection.contract_name}
                 logo={collection.logo_url}
                 priceCrypto={collection.average_price}
                 priceUsd={calculateUsdPrice(
                   collection.average_price,
-                  switchCoinPrice(selectedOption, price)
+                  switchCoinPrice(chain, price)
                 )}
                 priceChange={collection.average_price_change}
                 titleButton="View collection"
